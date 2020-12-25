@@ -19,8 +19,8 @@ def make_table(allSeq):
     for s in allSeq:
         ind = (s[1:], s[:-1])  # Indices of elements for existing transitions
         arr[ind] += 1          # Add existing transitions
-    # Normalize by columns and return as a DataFrame
-    return pd.DataFrame(arr / arr.sum(axis=0)).rename_axis(index='Next', columns='Current')
+    # Return as a DataFrame (normalizing not necessary for input to random.choices)
+    return pd.DataFrame(arr).rename_axis(index='Next', columns='Current')
 
 # Call function to generate transition table from any number of sequences
 transitions = make_table([sequence1, sequence2])
