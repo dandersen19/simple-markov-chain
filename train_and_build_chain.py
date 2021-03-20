@@ -17,8 +17,9 @@ def make_table(allSeq):
     # Transition array, initially empty
     arr = np.zeros((n,n), dtype=int)
     for s in allSeq:
-        ind = (s[1:], s[:-1])  # Indices of elements for existing transitions
-        arr[ind] += 1          # Add existing transitions
+        for i,j in zip(seq[1:],seq[:-1]): # now counts multiples of same succession of elemennts
+            ind = (i,j)
+            arr[ind] += 1
     # Return as a DataFrame (normalizing not necessary for input to random.choices)
     return pd.DataFrame(arr).rename_axis(index='Next', columns='Current')
 
